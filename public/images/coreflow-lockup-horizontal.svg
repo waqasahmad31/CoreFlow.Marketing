@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64">
+  <!-- CoreFlow primary lockup — icon + wordmark, horizontal.
+       Requires Bricolage Grotesque to be loaded (Google Fonts) to render the
+       wordmark as intended; falls back to the browser's default sans-serif
+       otherwise. For print/offline use, outline the text to paths first. -->
+  <svg x="0" y="0" width="64" height="64" viewBox="0 0 100 100">
+    <path d="M 76.2 68.4 A 32 32 0 1 1 76.2 31.6" fill="none" stroke="#0E7C86" stroke-width="11" stroke-linecap="round" />
+    <rect x="66" y="44.5" width="30" height="11" rx="5.5" fill="#D97A34" />
+  </svg>
+  <text x="78" y="34" dominant-baseline="central" font-family="'Bricolage Grotesque', sans-serif" font-weight="700" font-size="34" letter-spacing="-0.5" fill="#12181F">CoreFlow</text>
+</svg>

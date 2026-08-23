@@ -1,0 +1,92 @@
+---
+const nav = [
+  { href: '/features', label: 'Features' },
+  { href: '/pricing', label: 'Pricing' },
+  { href: '/roi-calculator', label: 'ROI Calculator' },
+  { href: '/case-studies', label: 'Case Studies' },
+  { href: '/about', label: 'About' },
+];
+---
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="CoreFlow home">
+      <img src="/images/coreflow-icon.svg" alt="" width="28" height="28" />
+      <span>CoreFlow</span>
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        {nav.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <a class="cta" href="/about#consultation">Book a Free Consultation</a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-border);
+    background: var(--color-surface);
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  .wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: var(--color-text);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+  }
+  nav {
+    flex: 1;
+  }
+  nav ul {
+    list-style: none;
+    display: none;
+    gap: 22px;
+    margin: 0;
+    padding: 0;
+  }
+  nav a {
+    color: var(--color-text-muted);
+    text-decoration: none;
+    font-size: 14.5px;
+  }
+  nav a:hover {
+    color: var(--color-core);
+  }
+  .cta {
+    display: none;
+    white-space: nowrap;
+    background: var(--color-flow);
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 9px 16px;
+    border-radius: 8px;
+  }
+  @media (min-width: 860px) {
+    nav ul {
+      display: flex;
+    }
+    .cta {
+      display: inline-block;
+    }
+  }
+</style>

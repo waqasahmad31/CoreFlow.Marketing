@@ -1,0 +1,113 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="col brand-col">
+      <a class="brand" href="/">
+        <img src="/images/coreflow-icon.svg" alt="" width="24" height="24" />
+        <span>CoreFlow</span>
+      </a>
+      <p>CRM, Inventory, Sales, Procurement, and Finance — one system.</p>
+    </div>
+    <div class="col">
+      <h3>Product</h3>
+      <ul>
+        <li><a href="/features">Features</a></li>
+        <li><a href="/pricing">Pricing</a></li>
+        <li><a href="/roi-calculator">ROI Calculator</a></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>Company</h3>
+      <ul>
+        <li><a href="/about">About &amp; Contact</a></li>
+        <li><a href="/case-studies">Case Studies</a></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h3>Legal</h3>
+      <ul>
+        <li><a href="/legal/privacy">Privacy Policy</a></li>
+        <li><a href="/legal/terms">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap bottom">
+    <span>&copy; {year} CoreFlow. All rights reserved.</span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
+    margin-top: 64px;
+  }
+  .wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 40px 24px;
+    display: grid;
+    grid-template-columns: 1.6fr repeat(3, 1fr);
+    gap: 28px;
+  }
+  @media (max-width: 700px) {
+    .wrap {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  .brand-col .brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    color: var(--color-text);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 17px;
+  }
+  .brand-col p {
+    color: var(--color-text-muted);
+    font-size: 13.5px;
+    max-width: 32ch;
+    margin-top: 10px;
+  }
+  h3 {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  ul a {
+    color: var(--color-text);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  ul a:hover {
+    color: var(--color-core);
+  }
+  .bottom {
+    padding-top: 0;
+    padding-bottom: 24px;
+    border-top: 1px solid var(--color-border);
+    margin-top: 4px;
+    padding-top: 20px;
+    color: var(--color-text-muted);
+    font-size: 12.5px;
+    font-family: var(--font-mono);
+    display: block;
+  }
+</style>

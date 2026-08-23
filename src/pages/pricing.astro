@@ -1,0 +1,130 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Pricing"
+  description="CoreFlow pricing is scoped to your team size and the modules you need. No published numbers yet — talk to us for a quote."
+>
+  <section class="intro">
+    <div class="wrap">
+      <span class="kicker">Pricing</span>
+      <h1>Pricing scoped to your business, not a one-size table</h1>
+      <p class="dek">
+        We're early-stage and working with a small number of pilot customers, so pricing isn't a
+        fixed self-serve table yet — it depends on team size and which modules you need. Book a
+        free consultation and we'll give you a real number for your actual use case, not a
+        placeholder.
+      </p>
+    </div>
+  </section>
+
+  <section class="model">
+    <div class="wrap">
+      <h2>How pricing works</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Per-user</h3>
+          <p>Priced by the number of people who need access — you don't pay for modules your team doesn't use.</p>
+        </div>
+        <div class="card">
+          <h3>Scoped to your modules</h3>
+          <p>Start with what you actually need — Sales, Inventory, Procurement, Finance, Approvals — and add more as you grow.</p>
+        </div>
+        <div class="card">
+          <h3>No hidden setup costs</h3>
+          <p>Whatever we quote you is what you pay — onboarding and setup are part of the conversation, not a surprise line item.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>Get a real number</h2>
+      <p>Tell us your team size and what you need — we'll give you a straight answer in the same conversation.</p>
+      <a class="btn-primary" href="/about#consultation">Book a Free Consultation</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .intro {
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-core);
+  }
+  .intro h1 {
+    font-size: clamp(28px, 3.6vw, 40px);
+    margin-top: 10px;
+    max-width: 22ch;
+  }
+  .dek {
+    color: var(--color-text-muted);
+    font-size: 17px;
+    margin-top: 14px;
+    max-width: 62ch;
+  }
+  .model {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .model h2 {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .card h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .card p {
+    color: var(--color-text-muted);
+    font-size: 14px;
+    margin: 0;
+  }
+  .cta-band {
+    text-align: center;
+    padding: 64px 0;
+  }
+  .cta-band p {
+    color: var(--color-text-muted);
+    max-width: 52ch;
+    margin: 12px auto 26px;
+  }
+  .btn-primary {
+    background: var(--color-flow);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 22px;
+    border-radius: 9px;
+  }
+</style>

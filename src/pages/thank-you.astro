@@ -1,0 +1,60 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Thanks"
+  description="Your consultation request was received."
+  noindex={true}
+>
+  <section class="confirm">
+    <div class="wrap">
+      <span class="kicker">Thank you</span>
+      <h1>We've got your request</h1>
+      <p class="dek">
+        We'll reply from a real person, not an autoresponder, to schedule your free consultation.
+        In the meantime, feel free to look at what CoreFlow actually does.
+      </p>
+      <a class="btn-primary" href="/features">See what it does →</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .confirm {
+    padding: 96px 0;
+    text-align: center;
+  }
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-core);
+  }
+  h1 {
+    font-size: clamp(28px, 3.6vw, 38px);
+    margin-top: 10px;
+  }
+  .dek {
+    color: var(--color-text-muted);
+    font-size: 16.5px;
+    margin: 16px auto 26px;
+    max-width: 52ch;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--color-flow);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 22px;
+    border-radius: 9px;
+  }
+</style>

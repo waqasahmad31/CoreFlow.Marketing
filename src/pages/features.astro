@@ -1,0 +1,160 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const sections = [
+  {
+    name: 'Sales & CRM',
+    lead: "Give a fast-growing sales team a pipeline they'll actually keep current.",
+    points: [
+      'Track leads, quotes, and orders in one pipeline instead of a shared spreadsheet.',
+      'See a customer\'s full history — quotes, orders, invoices, support notes — in one place before a call.',
+      'Approval routing on discounts and non-standard terms, so pricing exceptions don\'t need a Slack thread.',
+    ],
+  },
+  {
+    name: 'Inventory',
+    lead: 'Know what you actually have, across every location, in real time.',
+    points: [
+      'Stock levels update the moment a sale, purchase, or transfer happens — not at end-of-day reconciliation.',
+      'Multi-warehouse tracking, so a sale in one location doesn\'t oversell stock held in another.',
+      'Low-stock and reorder alerts tied to real historical demand, not a fixed guess.',
+    ],
+  },
+  {
+    name: 'Procurement',
+    lead: 'A purchase request has one trail from ask to approval to delivery.',
+    points: [
+      'Purchase requests route to the right approver automatically, based on amount and category.',
+      'Supplier orders and expected delivery dates stay linked to the original request — nothing gets re-typed.',
+      'Full audit trail: who requested, who approved, when it shipped, what arrived.',
+    ],
+  },
+  {
+    name: 'Finance',
+    lead: 'The numbers tie back to what actually happened in Sales and Inventory.',
+    points: [
+      'Invoicing generated directly from confirmed sales orders — no manual re-entry, no mismatch.',
+      'Payment tracking against real invoices, with a clear picture of what\'s outstanding and from whom.',
+      'Reports reflect live operational data, not a monthly export someone reconciles by hand.',
+    ],
+  },
+  {
+    name: 'Approvals',
+    lead: 'Every request that needs a sign-off finds the right person automatically.',
+    points: [
+      'Configurable approval chains for discounts, purchases, and refunds — based on your actual policy, not a fixed template.',
+      'Approvers see exactly what they\'re approving and why, in context — not a bare notification.',
+      'A complete record of every decision, for audits and for your own peace of mind.',
+    ],
+  },
+];
+---
+
+<Layout
+  title="Features"
+  description="What CoreFlow actually does across Sales, Inventory, Procurement, Finance, and Approvals — organized by what your team needs, not by internal module names."
+>
+  <section class="intro">
+    <div class="wrap">
+      <span class="kicker">Features</span>
+      <h1>Everything your business runs on, in one system</h1>
+      <p class="dek">
+        Organized by what you're trying to get done — not by what's easiest for us to name.
+      </p>
+    </div>
+  </section>
+
+  {sections.map((s, i) => (
+    <section class:list={['feature', { alt: i % 2 === 1 }]}>
+      <div class="wrap">
+        <h2>{s.name}</h2>
+        <p class="lead">{s.lead}</p>
+        <ul>
+          {s.points.map((p) => <li>{p}</li>)}
+        </ul>
+      </div>
+    </section>
+  ))}
+
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>Want to see it against your own data?</h2>
+      <p>We'll walk through a real scenario from your business in a free 30-minute consultation.</p>
+      <a class="btn-primary" href="/about#consultation">Book a Free Consultation</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .intro {
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-core);
+  }
+  .intro h1 {
+    font-size: clamp(28px, 3.6vw, 40px);
+    margin-top: 10px;
+    max-width: 20ch;
+  }
+  .dek {
+    color: var(--color-text-muted);
+    font-size: 17px;
+    margin-top: 14px;
+  }
+  .feature {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .feature.alt {
+    background: var(--color-surface);
+  }
+  .feature h2 {
+    font-size: 24px;
+  }
+  .lead {
+    color: var(--color-text-muted);
+    font-size: 16px;
+    margin: 10px 0 18px;
+    max-width: 60ch;
+  }
+  .feature ul {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 68ch;
+  }
+  .feature li {
+    font-size: 15px;
+  }
+  .cta-band {
+    text-align: center;
+    padding: 64px 0;
+  }
+  .cta-band p {
+    color: var(--color-text-muted);
+    max-width: 52ch;
+    margin: 12px auto 26px;
+  }
+  .btn-primary {
+    background: var(--color-flow);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 22px;
+    border-radius: 9px;
+  }
+</style>

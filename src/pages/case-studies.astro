@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Case Studies"
+  description="Real CoreFlow customer case studies, published only with explicit permission — none yet, and we won't fake it."
+>
+  <section class="intro">
+    <div class="wrap">
+      <span class="kicker">Case Studies</span>
+      <h1>Real results, once we have them to share</h1>
+      <p class="dek">
+        CoreFlow is early-stage. We're working with a small number of pilot customers right now,
+        and this page will fill in with real, permissioned case studies as those engagements
+        produce results worth sharing. We won't publish an invented customer, a placeholder logo
+        made to look real, or a made-up number here — if this page looks empty, it's because we
+        don't have real evidence yet, not because we're hiding it.
+      </p>
+    </div>
+  </section>
+
+  <section class="empty-state">
+    <div class="wrap">
+      <div class="empty-card">
+        <h2>No published case studies yet</h2>
+        <p>
+          Want to be our first? If you're evaluating CoreFlow as a pilot customer, we'll work
+          with you directly and — with your explicit permission — feature your results here.
+        </p>
+        <a class="btn-primary" href="/about#consultation">Book a Free Consultation</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .intro {
+    padding: 64px 0 40px;
+  }
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-core);
+  }
+  h1 {
+    font-size: clamp(28px, 3.6vw, 40px);
+    margin-top: 10px;
+    max-width: 20ch;
+  }
+  .dek {
+    color: var(--color-text-muted);
+    font-size: 16.5px;
+    margin-top: 16px;
+    max-width: 66ch;
+  }
+  .empty-state {
+    padding-bottom: 72px;
+  }
+  .empty-card {
+    border: 1px dashed var(--color-border);
+    border-radius: 16px;
+    padding: 40px;
+    text-align: center;
+    background: var(--color-surface);
+  }
+  .empty-card h2 {
+    font-size: 22px;
+  }
+  .empty-card p {
+    color: var(--color-text-muted);
+    max-width: 52ch;
+    margin: 12px auto 22px;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--color-flow);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 22px;
+    border-radius: 9px;
+  }
+</style>

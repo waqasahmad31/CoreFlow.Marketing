@@ -1,0 +1,103 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const lastUpdated = '2026-08-24';
+---
+
+<Layout
+  title="Terms of Service"
+  description="Terms for using the CoreFlow website and requesting a consultation."
+>
+  <section class="legal">
+    <div class="wrap">
+      <span class="kicker">Legal</span>
+      <h1>Terms of Service</h1>
+      <p class="updated">Last updated: {lastUpdated}</p>
+
+      <div class="notice">
+        <strong>Review before publishing:</strong> this covers use of the marketing website and the
+        consultation-request process only. It intentionally does not cover the CoreFlow product
+        itself (a separate product ToS/SLA is a decision for when customer contracts begin) — the
+        owner should confirm that scope is correct before this goes live, and add a real company
+        name/legal entity once one is registered.
+      </div>
+
+      <h2>Scope</h2>
+      <p>
+        These terms cover your use of this website (coreflow.example) and the free-consultation
+        request process. They don't cover the CoreFlow product itself, which is governed by a
+        separate agreement once you become a customer.
+      </p>
+
+      <h2>Using this site</h2>
+      <p>
+        You may browse this site and submit the consultation-request form for genuine business
+        inquiries. Don't use the form to submit spam, attempt to compromise the site, or misrepresent
+        who you are.
+      </p>
+
+      <h2>No commitment from a consultation request</h2>
+      <p>
+        Requesting a free consultation doesn't create a contract, a purchase obligation, or a
+        commitment on either side. It's a conversation.
+      </p>
+
+      <h2>Content</h2>
+      <p>
+        Everything on this site — text, the CoreFlow name and logo, images — belongs to CoreFlow
+        and may not be reused without permission. Case studies, when published, are shared only
+        with the named customer's explicit permission.
+      </p>
+
+      <h2>Changes</h2>
+      <p>We may update these terms as the site and business evolve. The date at the top reflects the last update.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about these terms: see the contact details on our <a href="/about">About page</a>.</p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 64px 24px 80px;
+  }
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-core);
+  }
+  h1 {
+    font-size: 32px;
+    margin-top: 10px;
+  }
+  .updated {
+    color: var(--color-text-muted);
+    font-size: 13px;
+    font-family: var(--font-mono);
+    margin-top: 6px;
+  }
+  .notice {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 3px solid var(--color-flow);
+    border-radius: 10px;
+    padding: 16px 18px;
+    font-size: 13.5px;
+    color: var(--color-text-muted);
+    margin: 28px 0;
+  }
+  h2 {
+    font-size: 19px;
+    margin-top: 36px;
+    margin-bottom: 10px;
+  }
+  p {
+    font-size: 15px;
+    color: var(--color-text);
+    line-height: 1.65;
+  }
+</style>

@@ -1,0 +1,267 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="ROI Calculator"
+  description="Estimate the time and cost your team could save on manual reconciliation and data entry by switching to CoreFlow."
+>
+  <section class="intro">
+    <div class="wrap">
+      <span class="kicker">ROI Calculator</span>
+      <h1>Estimate your savings</h1>
+      <p class="dek">
+        A rough, honest estimate of what manual reconciliation and data entry is costing you today
+        — and what automating it could save. This is directional, not a guarantee; get an exact
+        number for your business in a
+        <a href="/about#consultation">free consultation</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="calculator">
+    <div class="wrap two-col">
+      <form id="roi-form" class="roi-form">
+        <label>
+          Currency symbol
+          <input type="text" id="currency" value="$" maxlength="3" />
+        </label>
+        <label>
+          People doing manual reconciliation / data entry
+          <input type="number" id="employees" min="0" step="1" value="3" />
+        </label>
+        <label>
+          Hours per week, per person, spent on it
+          <input type="number" id="hours" min="0" step="0.5" value="8" />
+        </label>
+        <label>
+          Average fully-loaded hourly cost per person
+          <input type="number" id="hourlyCost" min="0" step="1" value="12" />
+        </label>
+      </form>
+
+      <div class="result">
+        <div class="result-card">
+          <span class="result-label">Estimated time saved</span>
+          <span class="result-value" id="hoursSaved">—</span>
+          <span class="result-sub">hours / week</span>
+        </div>
+        <div class="result-card highlight">
+          <span class="result-label">Estimated cost saved</span>
+          <span class="result-value" id="monthlySaved">—</span>
+          <span class="result-sub">per month</span>
+        </div>
+        <div class="result-card">
+          <span class="result-label">Annualized</span>
+          <span class="result-value" id="annualSaved">—</span>
+          <span class="result-sub">per year</span>
+        </div>
+
+        <details class="assumptions">
+          <summary>How we calculated this</summary>
+          <p>
+            We assume CoreFlow's automation typically reduces time spent on manual reconciliation
+            and data entry by <strong>~40%</strong> — a deliberately conservative, directional
+            estimate, not a number tuned to look impressive. It isn't tied to a specific
+            pilot-customer result yet (we'll update this once we have real data to base it on —
+            see our <a href="/case-studies">case studies page</a>).
+          </p>
+          <p>
+            This does not subtract CoreFlow's own cost — pricing is scoped per customer (see
+            <a href="/pricing">Pricing</a>), so we can't compute a true net payback period here.
+            Treat this as your gross opportunity, not a final ROI figure.
+          </p>
+          <p class="formula">
+            hours saved/week = people × hours/week × 40%<br />
+            cost saved/month = hours saved/week × hourly cost × 4.33<br />
+            cost saved/year = hours saved/week × hourly cost × 52
+          </p>
+        </details>
+
+        <a class="btn-primary" href="/about#consultation">Get an exact number →</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  const REDUCTION = 0.4;
+  const WEEKS_PER_MONTH = 4.33;
+  const WEEKS_PER_YEAR = 52;
+
+  const $ = (id: string) => document.getElementById(id) as HTMLInputElement;
+  const currency = $('currency');
+  const employees = $('employees');
+  const hours = $('hours');
+  const hourlyCost = $('hourlyCost');
+
+  const hoursSavedEl = document.getElementById('hoursSaved')!;
+  const monthlySavedEl = document.getElementById('monthlySaved')!;
+  const annualSavedEl = document.getElementById('annualSaved')!;
+
+  function formatMoney(amount: number, symbol: string) {
+    return `${symbol}${amount.toLocaleString(undefined, { maximumFractionDigits: 0 })}`;
+  }
+
+  function recalc() {
+    const numEmployees = Math.max(0, Number(employees.value) || 0);
+    const numHours = Math.max(0, Number(hours.value) || 0);
+    const rate = Math.max(0, Number(hourlyCost.value) || 0);
+    const sym = currency.value || '$';
+
+    const weeklyHoursSaved = numEmployees * numHours * REDUCTION;
+    const weeklyCostSaved = weeklyHoursSaved * rate;
+    const monthlyCostSaved = weeklyCostSaved * WEEKS_PER_MONTH;
+    const annualCostSaved = weeklyCostSaved * WEEKS_PER_YEAR;
+
+    hoursSavedEl.textContent = weeklyHoursSaved.toLocaleString(undefined, { maximumFractionDigits: 1 });
+    monthlySavedEl.textContent = formatMoney(monthlyCostSaved, sym);
+    annualSavedEl.textContent = formatMoney(annualCostSaved, sym);
+  }
+
+  [currency, employees, hours, hourlyCost].forEach((el) => {
+    el.addEventListener('input', recalc);
+  });
+
+  recalc();
+</script>
+
+<style>
+  .wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .intro {
+    padding: 64px 0 40px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-core);
+  }
+  h1 {
+    font-size: clamp(28px, 3.6vw, 40px);
+    margin-top: 10px;
+  }
+  .dek {
+    color: var(--color-text-muted);
+    font-size: 16.5px;
+    margin-top: 14px;
+    max-width: 62ch;
+  }
+  .calculator {
+    padding: 56px 0 72px;
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+  }
+  @media (max-width: 780px) {
+    .two-col {
+      grid-template-columns: 1fr;
+    }
+  }
+  .roi-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .roi-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13.5px;
+    color: var(--color-text-muted);
+  }
+  .roi-form input {
+    font: inherit;
+    font-family: var(--font-mono);
+    font-size: 16px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+  .result {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .result-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .result-card.highlight {
+    border-color: var(--color-core);
+    box-shadow: 0 0 0 1px var(--color-core);
+  }
+  .result-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+  .result-value {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 32px;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-core);
+  }
+  .result-sub {
+    font-size: 12.5px;
+    color: var(--color-text-muted);
+  }
+  .assumptions {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 14px 18px;
+    font-size: 13.5px;
+    color: var(--color-text-muted);
+  }
+  .assumptions summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-text);
+  }
+  .assumptions p {
+    margin: 12px 0 0;
+    line-height: 1.6;
+  }
+  .assumptions .formula {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    background: var(--color-bg);
+    padding: 10px 12px;
+    border-radius: 8px;
+  }
+  .btn-primary {
+    display: inline-block;
+    text-align: center;
+    background: var(--color-flow);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 20px;
+    border-radius: 9px;
+  }
+</style>

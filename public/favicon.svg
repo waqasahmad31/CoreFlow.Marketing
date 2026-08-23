@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- CoreFlow icon-only mark — FINAL (Direction A: Threshold), locked 2026-08-24.
+       Source of truth. Never redraw by eye — always derive from this file. -->
+  <path d="M 76.2 68.4 A 32 32 0 1 1 76.2 31.6" fill="none" stroke="#0E7C86" stroke-width="11" stroke-linecap="round" />
+  <rect x="66" y="44.5" width="30" height="11" rx="5.5" fill="#D97A34" />
+</svg>

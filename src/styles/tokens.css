@@ -1,0 +1,87 @@
+/* CoreFlow brand tokens — generated from Assets/tokens.json (04 - CoreFlow_Brand_GTM_Prompts).
+   Do not hand-edit color/type values here without updating the source tokens.json too. */
+
+:root {
+  /* Color — light (default) */
+  --color-core: #0E7C86;
+  --color-flow: #D97A34;
+  --color-ink: #12181F;
+  --color-paper: #F5F7F7;
+  --color-neutral: #5B6B6C;
+  --color-border: #DCE3E3;
+
+  --color-bg: var(--color-paper);
+  --color-surface: #FFFFFF;
+  --color-text: var(--color-ink);
+  --color-text-muted: var(--color-neutral);
+
+  /* Type */
+  --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
+  --font-body: 'IBM Plex Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+  --content-max: 1160px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --color-core: #3FB0BA;
+    --color-flow: #F0954F;
+    --color-bg: #12181F;
+    --color-surface: #181F27;
+    --color-text: #EAF0EF;
+    --color-text-muted: #9BB0AF;
+    --color-border: #2A343D;
+  }
+}
+
+:root[data-theme='dark'] {
+  --color-core: #3FB0BA;
+  --color-flow: #F0954F;
+  --color-bg: #12181F;
+  --color-surface: #181F27;
+  --color-text: #EAF0EF;
+  --color-text-muted: #9BB0AF;
+  --color-border: #2A343D;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  text-wrap: balance;
+  margin: 0;
+}
+
+code,
+.mono {
+  font-family: var(--font-mono);
+}
+
+a {
+  color: var(--color-core);
+}
+
+img,
+svg {
+  max-width: 100%;
+}

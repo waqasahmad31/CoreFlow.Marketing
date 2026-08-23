@@ -1,0 +1,7 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+# Netlify Forms detects forms in the built HTML automatically (see
+# src/pages/about.astro's data-netlify="true" form) — no extra config needed
+# beyond deploying this repo on Netlify.

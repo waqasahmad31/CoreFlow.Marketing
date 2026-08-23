@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- CoreFlow icon — monochrome (White). For dark backgrounds, photos,
+       or overlays where the two-color mark would lose contrast. -->
+  <path d="M 76.2 68.4 A 32 32 0 1 1 76.2 31.6" fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" />
+  <rect x="66" y="44.5" width="30" height="11" rx="5.5" fill="#FFFFFF" />
+</svg>

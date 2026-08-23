@@ -1,0 +1,194 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const capabilities = [
+  {
+    name: 'Sales & CRM',
+    summary: 'Track every deal from first contact to signed order, with a pipeline your sales team will actually keep up to date.',
+  },
+  {
+    name: 'Inventory',
+    summary: 'Real-time stock across multiple warehouses, so you stop selling what you don’t have and stop over-ordering what you do.',
+  },
+  {
+    name: 'Procurement',
+    summary: 'Purchase requests, approvals, and supplier orders in one trail — no more chasing a decision through email threads.',
+  },
+  {
+    name: 'Finance',
+    summary: 'Invoicing, payments, and the numbers that tie back to what actually happened in Sales and Inventory, not a separate spreadsheet.',
+  },
+  {
+    name: 'Approvals',
+    summary: 'Every request that needs a sign-off — a discount, a purchase, a refund — routes to the right person automatically.',
+  },
+];
+---
+
+<Layout
+  title="Business ERP for growing SMEs"
+  description="CoreFlow is a single system for CRM, inventory, sales, procurement, and finance — built for SMEs who have outgrown spreadsheets and disconnected tools."
+>
+  <section class="hero">
+    <div class="wrap">
+      <h1>One system for the business you're running today — and the one you're growing into.</h1>
+      <p class="dek">
+        CoreFlow replaces the spreadsheets, disconnected tools, and manual handoffs between
+        sales, inventory, procurement, and finance with one system everyone actually uses.
+      </p>
+      <div class="hero-actions">
+        <a class="btn-primary" href="/about#consultation">Book a Free Consultation</a>
+        <a class="btn-secondary" href="/features">See what it does →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="capabilities">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="kicker">What's inside</span>
+        <h2>Five systems, one source of truth</h2>
+      </div>
+      <div class="grid">
+        {capabilities.map((c) => (
+          <div class="card">
+            <h3>{c.name}</h3>
+            <p>{c.summary}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="trust">
+    <div class="wrap">
+      <span class="kicker">Early access</span>
+      <h2>CoreFlow is early-stage — and we're honest about that</h2>
+      <p>
+        We're working with a small number of pilot customers right now. If you're evaluating
+        CoreFlow, a free consultation is the fastest way to see it against your actual workflow —
+        not a generic demo. Case studies and customer logos will appear here once pilot customers
+        give us permission to share their results, not before.
+      </p>
+    </div>
+  </section>
+
+  <section class="cta-band">
+    <div class="wrap">
+      <h2>See CoreFlow against your own workflow</h2>
+      <p>30 minutes, no cost, no obligation — we'll walk through your actual sales, inventory, or approval process and show you what changes.</p>
+      <a class="btn-primary" href="/about#consultation">Book a Free Consultation</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .hero {
+    padding: 76px 0 64px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .hero h1 {
+    font-size: clamp(32px, 4.6vw, 52px);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.08;
+    max-width: 18ch;
+  }
+  .dek {
+    font-size: 18px;
+    color: var(--color-text-muted);
+    max-width: 58ch;
+    margin: 22px 0 32px;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    background: var(--color-flow);
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 22px;
+    border-radius: 9px;
+  }
+  .btn-secondary {
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 6px;
+  }
+  section {
+    padding: 64px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  section:last-of-type {
+    border-bottom: none;
+  }
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-core);
+  }
+  .section-head h2,
+  .trust h2,
+  .cta-band h2 {
+    font-size: 28px;
+    margin-top: 8px;
+    letter-spacing: -0.01em;
+  }
+  .grid {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 860px) {
+    .grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  @media (max-width: 560px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .card h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+  }
+  .card p {
+    color: var(--color-text-muted);
+    font-size: 14px;
+    margin: 0;
+  }
+  .trust p {
+    color: var(--color-text-muted);
+    max-width: 68ch;
+    margin-top: 14px;
+  }
+  .cta-band {
+    text-align: center;
+  }
+  .cta-band p {
+    color: var(--color-text-muted);
+    max-width: 52ch;
+    margin: 12px auto 26px;
+  }
+</style>

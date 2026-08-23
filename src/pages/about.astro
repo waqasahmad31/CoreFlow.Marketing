@@ -1,0 +1,201 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="About & Contact"
+  description="About CoreFlow, and how to reach us or book a free consultation."
+>
+  <section class="intro">
+    <div class="wrap">
+      <span class="kicker">About</span>
+      <h1>An early-stage team building CoreFlow the right way</h1>
+      <p class="dek">
+        CoreFlow is early-stage — we're working directly with a small number of pilot customers
+        to build something genuinely useful, not chasing feature checklists. We'd rather tell you
+        that plainly than present ourselves as bigger than we are.
+        <!-- TODO(owner): replace with your real company name, founding story,
+             team size, and location once decided — this is placeholder honesty,
+             not placeholder fiction. -->
+      </p>
+    </div>
+  </section>
+
+  <section id="consultation" class="consultation">
+    <div class="wrap two-col">
+      <div>
+        <h2>Book a free consultation</h2>
+        <p>
+          30 minutes, no cost, no obligation. Tell us about your current sales, inventory, or
+          approval workflow and we'll show you specifically what CoreFlow changes — not a generic
+          product tour.
+        </p>
+        <p class="fine-print">
+          We only use the information below to respond to your request and schedule the call. See
+          our <a href="/legal/privacy">Privacy Policy</a> for details.
+        </p>
+      </div>
+      <form
+        class="contact-form"
+        name="consultation"
+        method="POST"
+        action="/thank-you"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+      >
+        <!--
+          Netlify Forms (free tier, works automatically once this site is
+          deployed on Netlify — no separate form service needed). Netlify's
+          build-time bot detects this form from the static HTML because of
+          the data-netlify attribute + hidden form-name field below. Until
+          deployed on Netlify, this form does not submit anywhere real.
+        -->
+        <input type="hidden" name="form-name" value="consultation" />
+        <p class="hidden-field">
+          <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+        </p>
+        <label>
+          Name
+          <input type="text" name="name" required />
+        </label>
+        <label>
+          Work email
+          <input type="email" name="email" required />
+        </label>
+        <label>
+          Company
+          <input type="text" name="company" />
+        </label>
+        <label>
+          What would you like us to look at?
+          <textarea name="message" rows="4" placeholder="e.g. our inventory reconciliation process"></textarea>
+        </label>
+        <button type="submit">Request a Consultation</button>
+      </form>
+    </div>
+  </section>
+
+  <section class="contact-details">
+    <div class="wrap">
+      <h2>Other ways to reach us</h2>
+      <ul>
+        <li><strong>Email:</strong> hello@coreflow.example <!-- TODO(owner): real inbox --></li>
+        <li><strong>Location:</strong> Serving customers across Pakistan/regional and international markets <!-- TODO(owner): add a real address once one exists; don't imply an office that doesn't --></li>
+      </ul>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .wrap {
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .intro {
+    padding: 64px 0 48px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-core);
+  }
+  h1 {
+    font-size: clamp(28px, 3.6vw, 38px);
+    margin-top: 10px;
+    max-width: 22ch;
+  }
+  .dek {
+    color: var(--color-text-muted);
+    font-size: 16.5px;
+    margin-top: 16px;
+    max-width: 66ch;
+  }
+  .consultation {
+    padding: 56px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  @media (max-width: 780px) {
+    .two-col {
+      grid-template-columns: 1fr;
+    }
+  }
+  .consultation h2 {
+    font-size: 26px;
+  }
+  .consultation p {
+    color: var(--color-text-muted);
+    margin-top: 14px;
+    max-width: 44ch;
+  }
+  .fine-print {
+    font-size: 13px;
+  }
+  .hidden-field {
+    position: absolute;
+    left: -9999px;
+  }
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .contact-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 13.5px;
+    color: var(--color-text-muted);
+  }
+  .contact-form input,
+  .contact-form textarea {
+    font: inherit;
+    font-family: var(--font-body);
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+  .contact-form button {
+    margin-top: 6px;
+    background: var(--color-flow);
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 20px;
+    border-radius: 9px;
+    cursor: pointer;
+  }
+  .contact-details {
+    padding: 48px 0 72px;
+  }
+  .contact-details h2 {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+  .contact-details ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    color: var(--color-text-muted);
+    font-size: 15px;
+  }
+</style>
