@@ -7,12 +7,26 @@ interface Props {
   title: string;
   description: string;
   noindex?: boolean;
+  /** Extra JSON-LD objects for this page, merged alongside the site-wide Organization schema. */
+  structuredData?: Record<string, unknown>[];
 }
 
-const { title, description, noindex = false } = Astro.props;
+const { title, description, noindex = false, structuredData = [] } = Astro.props;
 const siteUrl = 'https://coreflow.example';
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
 const ogImage = new URL('/images/og-default.svg', siteUrl);
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'CoreFlow',
+  url: siteUrl,
+  logo: new URL('/images/coreflow-icon.svg', siteUrl).toString(),
+  description:
+    'CoreFlow is a business ERP (CRM, Inventory, Sales, Procurement, Finance, Approvals) built for growing SMEs.',
+};
+
+const allSchemas = [organizationSchema, ...structuredData];
 ---
 
 <!doctype html>
@@ -24,8 +38,20 @@ const ogImage = new URL('/images/og-default.svg', siteUrl);
     <link rel="canonical" href={canonicalUrl} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
 
+    <!--
+      Google Search Console verification: TODO(owner) — once the site is
+      live on a real domain, add the site in Search Console and replace
+      REPLACE_WITH_REAL_VERIFICATION_CODE with the code it gives you (or use
+      the DNS-verification method instead and remove this tag entirely).
+    -->
+    <meta name="google-site-verification" content="REPLACE_WITH_REAL_VERIFICATION_CODE" />
+
     <title>{title} · CoreFlow</title>
     <meta name="description" content={description} />
+
+    {allSchemas.map((schema) => (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    ))}
 
     <meta property="og:type" content="website" />
     <meta property="og:title" content={`${title} · CoreFlow`} />
@@ -37,7 +63,7 @@ const ogImage = new URL('/images/og-default.svg', siteUrl);
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=IBM+Plex+Sans:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
       rel="stylesheet"
     />
 

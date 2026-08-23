@@ -49,10 +49,12 @@ src/
 │   ├── index.astro        # Home / landing page
 │   ├── features.astro     # Capabilities by business function
 │   ├── pricing.astro      # Pricing model (no published numbers — see Status)
-│   ├── roi-calculator.astro  # Interactive savings estimator
+│   ├── roi-calculator.astro  # Interactive savings estimator (Phase 3)
 │   ├── case-studies.astro # Case study template (populated only with real, permissioned content)
-│   ├── about.astro        # Company info + consultation-request form
+│   ├── about.astro        # Company info, consultation-request + qualification form, booking flow (Phase 7)
 │   ├── thank-you.astro    # Post-submission confirmation
+│   ├── guides/
+│   │   └── erp-readiness-checklist.astro  # Lead magnet (Phase 5) — free, no email required to read
 │   └── legal/
 │       ├── privacy.astro
 │       └── terms.astro
@@ -86,27 +88,47 @@ Analytics: **Cloudflare Web Analytics**.
 4. Create a free Cloudflare Web Analytics account, register this site (no DNS change required —
    it's a JS beacon), and replace `REPLACE_WITH_REAL_TOKEN` in `src/layouts/Layout.astro` with
    the real beacon token.
+5. Create a free Cal.com account, set up a 30-minute "Free Consultation" event type, and replace
+   the placeholder in the "Prefer to pick a time directly?" block in `src/pages/about.astro` with
+   the real embed (Cal.com's embed docs: https://cal.com/docs/embed) — the free tier covers this
+   fully, no paid plan needed.
+6. Once the site is live on a real domain, add it to Google Search Console and Bing Webmaster
+   Tools, submit `sitemap-index.xml`, and replace `REPLACE_WITH_REAL_VERIFICATION_CODE` in
+   `src/layouts/Layout.astro` with the real verification code (or switch to DNS verification and
+   remove that meta tag).
 
 ## Status
 
 | Area | Status |
 |---|---|
-| Pages (home, features, pricing, ROI calculator, case studies, about, legal) | ✅ Built |
+| Pages (home, features, pricing, ROI calculator, checklist, case studies, about, legal) | ✅ Built |
 | Brand kit applied consistently | ✅ Done |
-| Accessibility baseline (semantic HTML, alt text, contrast, keyboard nav) | ✅ Done |
+| Accessibility baseline (semantic HTML, alt text, contrast, keyboard nav) | ✅ Done — Lighthouse Accessibility 100/100 |
 | ROI calculator (Phase 3) | ✅ Live — real-time, conservative 40% assumption, disclosed inline |
-| Lighthouse / performance audit | ⚠️ Not yet measured — run before going live |
-| Analytics wired to a real account | ⚠️ Placeholder token — needs a Cloudflare account |
+| Lead magnet (Phase 5) | ✅ Live at `/guides/erp-readiness-checklist` — free to read/print, no email gate |
+| Cold outreach templates (Phase 6) | ✅ Documents only (not site code) — see `04 - CoreFlow_Brand_GTM_Prompts/Deliverables/06_Cold_Outreach/` |
+| Consultation booking + qualification form (Phase 7) | ✅ Qualification form live; live time-slot picking pending a Cal.com account (owner action) |
+| Structured data / on-page SEO (Phase 8) | ✅ Organization + SoftwareApplication JSON-LD, sitemap, robots.txt — Lighthouse SEO 100/100 |
+| **Lighthouse (homepage, local build)** | **Performance 84 · Accessibility 100 · Best Practices 96 · SEO 100** — see note below |
+| Analytics wired to a real account | ⚠️ Placeholder token — needs a Cloudflare account (the one Best Practices point lost is this placeholder's CORS console error, expected until replaced) |
 | Consultation form wired to a real deploy | ⚠️ Activates automatically once live on Netlify |
+| Cal.com booking widget | ⚠️ Placeholder on `/about` — needs a free Cal.com account (owner action) |
+| Google Search Console verification | ⚠️ Placeholder meta tag — needs the real domain live first |
 | Legal pages reviewed by owner | ⚠️ Pending — see inline notices in `privacy.astro` / `terms.astro` |
 | Deployed with a production domain | ❌ Not yet |
 | Logo raster (PNG) exports | ❌ Not yet — SVGs only; not required by this site, but outstanding for other channels |
+
+*Lighthouse was run locally against `astro preview` (no CDN, no production domain) — re-run once
+deployed on Netlify with a real domain; scores there should be equal or better, not worse.*
 
 **Deliberately not done, by design — not oversights:**
 - No pricing numbers are published (only the pricing *model*) — specific numbers need explicit
   owner sign-off.
 - No case studies, customer logos, or testimonials appear anywhere — none exist yet with real
   permission, and none will be fabricated.
+- Cold outreach templates (Phase 6) and case-study/testimonial collection process + permission
+  release (Phase 4) are prose documents for manual human use, not website code — see
+  `04 - CoreFlow_Brand_GTM_Prompts/Deliverables/`.
 
 ## License
 

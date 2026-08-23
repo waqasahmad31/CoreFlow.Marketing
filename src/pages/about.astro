@@ -28,11 +28,12 @@ import Layout from '../layouts/Layout.astro';
         <p>
           30 minutes, no cost, no obligation. Tell us about your current sales, inventory, or
           approval workflow and we'll show you specifically what CoreFlow changes — not a generic
-          product tour.
+          product tour. See what actually happens on the call in our
+          <a href="/about#audit-process">audit process</a> below.
         </p>
         <p class="fine-print">
-          We only use the information below to respond to your request and schedule the call. See
-          our <a href="/legal/privacy">Privacy Policy</a> for details.
+          We only use the information below to prepare for and schedule the call. See our
+          <a href="/legal/privacy">Privacy Policy</a> for details.
         </p>
       </div>
       <form
@@ -49,6 +50,11 @@ import Layout from '../layouts/Layout.astro';
           build-time bot detects this form from the static HTML because of
           the data-netlify attribute + hidden form-name field below. Until
           deployed on Netlify, this form does not submit anywhere real.
+
+          Fields below double as the qualification form from Phase 7
+          (04_.../Deliverables/07_Consultation_Audit/Qualification-Criteria.md)
+          — company size, current tools, and biggest pain point give whoever
+          runs the call real prep instead of walking in cold.
         -->
         <input type="hidden" name="form-name" value="consultation" />
         <p class="hidden-field">
@@ -67,11 +73,63 @@ import Layout from '../layouts/Layout.astro';
           <input type="text" name="company" />
         </label>
         <label>
-          What would you like us to look at?
-          <textarea name="message" rows="4" placeholder="e.g. our inventory reconciliation process"></textarea>
+          Company size
+          <select name="companySize">
+            <option value="">Select…</option>
+            <option value="1-10">1–10 employees</option>
+            <option value="11-50">11–50 employees</option>
+            <option value="51-200">51–200 employees</option>
+            <option value="200+">200+ employees</option>
+          </select>
+        </label>
+        <label>
+          What are you using today? (spreadsheets, another tool, nothing formal)
+          <input type="text" name="currentTools" placeholder="e.g. Excel + WhatsApp for approvals" />
+        </label>
+        <label>
+          Your biggest pain point right now
+          <textarea name="painPoint" rows="3" placeholder="e.g. our inventory reconciliation process"></textarea>
         </label>
         <button type="submit">Request a Consultation</button>
       </form>
+    </div>
+
+    <div class="wrap booking-embed">
+      <h3>Prefer to pick a time directly?</h3>
+      <p class="fine-print">
+        <!-- TODO(owner): create a free Cal.com account, set up a 30-minute
+             "Free Consultation" event type, and replace REPLACE_WITH_CAL_USERNAME
+             below with the real booking link. Cal.com's free tier covers this
+             use case fully — no paid plan needed. -->
+        Live scheduling isn't connected yet — for now, use the form above and we'll follow up to
+        find a time. Once live, you'll be able to pick a slot instantly below.
+      </p>
+      <div class="cal-embed-placeholder" aria-hidden="true">
+        <span>Cal.com booking widget — pending owner setup</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="audit-process" class="audit-process">
+    <div class="wrap">
+      <h2>What actually happens on the call</h2>
+      <div class="process-grid">
+        <div class="process-card">
+          <span class="step">1</span>
+          <h3>Discovery — 10 min</h3>
+          <p>We ask about your actual current process in the area you flagged, not a generic product tour.</p>
+        </div>
+        <div class="process-card">
+          <span class="step">2</span>
+          <h3>Mapping — 15 min</h3>
+          <p>We connect what you described to specific capabilities — by name — and say plainly if something isn't a strong fit.</p>
+        </div>
+        <div class="process-card">
+          <span class="step">3</span>
+          <h3>Next steps — 5 min</h3>
+          <p>A concrete next step, including a written follow-up summary within 2–3 business days — useful even if you never buy CoreFlow.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -173,7 +231,7 @@ import Layout from '../layouts/Layout.astro';
   .contact-form button {
     margin-top: 6px;
     background: var(--color-flow);
-    color: #fff;
+    color: var(--color-on-flow);
     border: none;
     font-weight: 600;
     font-size: 15px;
@@ -197,5 +255,84 @@ import Layout from '../layouts/Layout.astro';
     gap: 8px;
     color: var(--color-text-muted);
     font-size: 15px;
+  }
+  .contact-form select {
+    font: inherit;
+    font-family: var(--font-body);
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+  .booking-embed {
+    margin-top: 40px;
+    padding-top: 32px;
+    border-top: 1px dashed var(--color-border);
+  }
+  .booking-embed h3 {
+    font-size: 17px;
+  }
+  .booking-embed .fine-print {
+    color: var(--color-text-muted);
+    margin-top: 8px;
+    max-width: 60ch;
+  }
+  .cal-embed-placeholder {
+    margin-top: 14px;
+    border: 1px dashed var(--color-border);
+    border-radius: 12px;
+    padding: 40px;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: 13.5px;
+    font-family: var(--font-mono);
+    background: var(--color-bg);
+  }
+  .audit-process {
+    padding: 56px 0 72px;
+  }
+  .audit-process h2 {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 760px) {
+    .process-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  .process-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 22px;
+  }
+  .process-card .step {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--color-core);
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .process-card h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+  .process-card p {
+    color: var(--color-text-muted);
+    font-size: 13.5px;
+    margin: 0;
   }
 </style>

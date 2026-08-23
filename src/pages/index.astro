@@ -23,11 +23,24 @@ const capabilities = [
     summary: 'Every request that needs a sign-off — a discount, a purchase, a refund — routes to the right person automatically.',
   },
 ];
+
+const softwareApplicationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'CoreFlow',
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  description:
+    'CoreFlow is a business ERP covering CRM, Inventory, Sales, Procurement, Finance, and Approvals — built for growing SMEs.',
+  // No `offers` block: pricing isn't published yet (see /pricing). No `aggregateRating`:
+  // no real customer reviews exist yet — do not fabricate one for rich-result eligibility.
+};
 ---
 
 <Layout
   title="Business ERP for growing SMEs"
   description="CoreFlow is a single system for CRM, inventory, sales, procurement, and finance — built for SMEs who have outgrown spreadsheets and disconnected tools."
+  structuredData={[softwareApplicationSchema]}
 >
   <section class="hero">
     <div class="wrap">
@@ -73,6 +86,17 @@ const capabilities = [
     </div>
   </section>
 
+  <section class="guide-band">
+    <div class="wrap guide-card">
+      <div>
+        <span class="kicker">Free guide</span>
+        <h2>Not sure if you've actually outgrown spreadsheets?</h2>
+        <p>The SME ERP Readiness Checklist — a 5-minute, honest self-assessment. No sales pitch, no email required to read it.</p>
+      </div>
+      <a class="btn-secondary" href="/guides/erp-readiness-checklist">Take the checklist →</a>
+    </div>
+  </section>
+
   <section class="cta-band">
     <div class="wrap">
       <h2>See CoreFlow against your own workflow</h2>
@@ -112,7 +136,7 @@ const capabilities = [
   }
   .btn-primary {
     background: var(--color-flow);
-    color: #fff;
+    color: var(--color-on-flow);
     text-decoration: none;
     font-weight: 600;
     font-size: 15px;
@@ -182,6 +206,36 @@ const capabilities = [
     color: var(--color-text-muted);
     max-width: 68ch;
     margin-top: 14px;
+  }
+  .guide-band {
+    background: var(--color-surface);
+  }
+  .guide-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .guide-card h2 {
+    font-size: 22px;
+    margin-top: 6px;
+  }
+  .guide-card p {
+    color: var(--color-text-muted);
+    font-size: 14.5px;
+    margin-top: 8px;
+    max-width: 48ch;
+  }
+  .btn-secondary {
+    white-space: nowrap;
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    border: 1px solid var(--color-border);
+    padding: 12px 20px;
+    border-radius: 9px;
   }
   .cta-band {
     text-align: center;

@@ -1,0 +1,304 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const sections = [
+  {
+    name: 'Sales & CRM',
+    items: [
+      "More than one person needs to see a deal's status, and they currently find out by asking someone or checking a shared spreadsheet.",
+      "You've lost track of a follow-up because it lived in someone's personal notes or inbox.",
+      "A customer's order history isn't visible to whoever's talking to them right now.",
+      'Pricing exceptions or discounts happen without a clear record of who approved them.',
+    ],
+  },
+  {
+    name: 'Inventory',
+    items: [
+      "You've oversold something because stock counts weren't accurate in real time.",
+      'You operate more than one location/warehouse and reconciling stock between them is manual.',
+      'Reorder decisions are based on a gut feeling more than actual historical demand data.',
+      'A stock count "as of this morning" is often already wrong by the afternoon.',
+    ],
+  },
+  {
+    name: 'Procurement',
+    items: [
+      "A purchase request's approval status lives in an email thread, not a system.",
+      "You've had a supplier order placed twice, or missed, because of unclear ownership.",
+      "There's no single place to see what's been requested, approved, ordered, and delivered.",
+    ],
+  },
+  {
+    name: 'Finance',
+    items: [
+      'Invoices are created by re-typing information that already exists somewhere else (an order, a delivery note).',
+      'Reconciling what Sales/Inventory say happened against what Finance recorded takes real, recurring manual effort.',
+      '"What\'s outstanding and from whom" isn\'t a report you can pull in under a minute.',
+    ],
+  },
+  {
+    name: 'Approvals',
+    items: [
+      "Requests that need sign-off (discounts, purchases, refunds) don't reliably reach the right person without someone chasing it.",
+      "There's no clear, searchable record of who approved what, and when.",
+    ],
+  },
+];
+---
+
+<Layout
+  title="The SME ERP Readiness Checklist"
+  description="A free, honest 5-minute self-assessment to find out whether your business has actually outgrown spreadsheets and disconnected tools — no sales pitch, just a diagnostic."
+>
+  <section class="intro no-print">
+    <div class="wrap">
+      <span class="kicker">Free Guide</span>
+      <h1>The SME ERP Readiness Checklist</h1>
+      <p class="dek">
+        You don't need to be convinced ERP software exists — you need to know whether
+        <em>your</em> business has actually outgrown spreadsheets and disconnected tools, or
+        whether it's still fine for now. This checklist helps you find out, honestly, in about
+        five minutes. There's no score to pass or fail — it's a diagnostic, not a sales pitch.
+      </p>
+      <div class="actions">
+        <button type="button" class="btn-secondary" onclick="window.print()">Print / Save as PDF</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="checklist">
+    <div class="wrap">
+      {sections.map((s) => (
+        <div class="section-block">
+          <h2>{s.name}</h2>
+          <ul>
+            {s.items.map((item) => (
+              <li>
+                <label>
+                  <input type="checkbox" />
+                  <span>{item}</span>
+                </label>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <div class="meaning">
+        <h2>What your answers mean</h2>
+        <ul class="meaning-list">
+          <li><strong>Mostly unchecked:</strong> your current setup is probably serving you fine. Revisit this in 6–12 months as you grow.</li>
+          <li><strong>A handful checked, concentrated in one area:</strong> you likely have a specific, addressable pain point — worth a focused conversation about that one area.</li>
+          <li><strong>Checked across most sections:</strong> the pattern is usually the same at this point — information that should be connected isn't, and people are doing manual work to bridge the gap. That's exactly what an ERP system is built to solve.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="capture no-print">
+    <div class="wrap">
+      <div class="capture-card">
+        <div>
+          <h2>Want this as a link you can revisit?</h2>
+          <p>
+            Leave your email and we'll send you this checklist plus occasional emails about
+            CoreFlow — unsubscribe anytime. You don't need to do this to read or print the
+            checklist above; it's already free and complete.
+          </p>
+        </div>
+        <form name="erp-checklist-capture" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you">
+          <input type="hidden" name="form-name" value="erp-checklist-capture" />
+          <p class="hidden-field"><label>Don't fill this out if you're human: <input name="bot-field" /></label></p>
+          <label class="sr-only" for="capture-email">Email</label>
+          <input id="capture-email" type="email" name="email" placeholder="you@company.com" required />
+          <button type="submit">Send it to me</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band no-print">
+    <div class="wrap">
+      <h2>Whatever your results say</h2>
+      <p>A free 30-minute consultation gives you a specific, honest answer — not a generic pitch.</p>
+      <a class="btn-primary" href="/about#consultation">Book a Free Consultation</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .intro {
+    padding: 64px 0 40px;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-core);
+  }
+  h1 {
+    font-size: clamp(28px, 3.6vw, 38px);
+    margin-top: 10px;
+  }
+  .dek {
+    color: var(--color-text-muted);
+    font-size: 16.5px;
+    margin-top: 16px;
+    line-height: 1.65;
+  }
+  .actions {
+    margin-top: 22px;
+  }
+  .btn-secondary {
+    font: inherit;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    font-weight: 600;
+    font-size: 14px;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .checklist {
+    padding: 48px 0;
+  }
+  .section-block {
+    margin-bottom: 34px;
+  }
+  .section-block h2 {
+    font-size: 19px;
+    margin-bottom: 14px;
+  }
+  .section-block ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .section-block label {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .section-block input[type='checkbox'] {
+    margin-top: 4px;
+    flex: none;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--color-core);
+  }
+  .meaning {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 24px;
+  }
+  .meaning h2 {
+    font-size: 19px;
+    margin-bottom: 12px;
+  }
+  .meaning-list {
+    margin: 0;
+    padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14.5px;
+    color: var(--color-text-muted);
+  }
+  .capture {
+    padding: 8px 0 56px;
+  }
+  .capture-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+    padding: 26px;
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 24px;
+    align-items: center;
+  }
+  @media (max-width: 640px) {
+    .capture-card {
+      grid-template-columns: 1fr;
+    }
+  }
+  .capture-card h2 {
+    font-size: 18px;
+  }
+  .capture-card p {
+    color: var(--color-text-muted);
+    font-size: 13.5px;
+    margin-top: 8px;
+  }
+  .capture-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .capture-card input[type='email'] {
+    font: inherit;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    color: var(--color-text);
+  }
+  .capture-card button {
+    background: var(--color-flow);
+    color: var(--color-on-flow);
+    border: none;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 11px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .hidden-field,
+  .sr-only {
+    position: absolute;
+    left: -9999px;
+  }
+  .cta-band {
+    text-align: center;
+    padding: 0 0 72px;
+  }
+  .cta-band p {
+    color: var(--color-text-muted);
+    margin: 10px 0 22px;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--color-flow);
+    color: var(--color-on-flow);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    padding: 13px 22px;
+    border-radius: 9px;
+  }
+
+  @media print {
+    :global(header),
+    :global(footer),
+    .no-print {
+      display: none !important;
+    }
+    .checklist {
+      padding: 0;
+    }
+  }
+</style>

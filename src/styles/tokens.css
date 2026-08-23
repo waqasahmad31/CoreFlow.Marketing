@@ -14,6 +14,10 @@
   --color-surface: #FFFFFF;
   --color-text: var(--color-ink);
   --color-text-muted: var(--color-neutral);
+  /* Text color for content placed on a --color-flow background (buttons, etc).
+     White fails WCAG AA contrast against both flow shades (2.3:1 / 3.1:1) —
+     dark ink passes comfortably (5.8:1 / 7.8:1). Found via Lighthouse audit. */
+  --color-on-flow: var(--color-ink);
 
   /* Type */
   --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
