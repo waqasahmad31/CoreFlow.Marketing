@@ -17,7 +17,9 @@ const { title, description, noindex = false, structuredData = [] } = Astro.props
 // there; the fallback only applies if `site` is unset.
 const siteUrl = Astro.site ?? new URL('https://coreflow.netlify.app');
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
-const ogImage = new URL('/images/og-default.svg', siteUrl);
+// PNG, not the SVG source: LinkedIn, Facebook, WhatsApp, X and Slack all
+// refuse SVG Open Graph images and render no preview at all.
+const ogImage = new URL('/images/og-default.png', siteUrl);
 
 const organizationSchema = {
   '@context': 'https://schema.org',
