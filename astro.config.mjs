@@ -4,7 +4,8 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO(owner): replace with the real production domain once one is registered.
-  site: 'https://coreflow.example',
+  // Netlify subdomain. Replace with the custom domain once one is registered,
+  // and update public/robots.txt to match.
+  site: 'https://coreflow.netlify.app',
   integrations: [sitemap()],
 });

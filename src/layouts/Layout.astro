@@ -12,7 +12,10 @@ interface Props {
 }
 
 const { title, description, noindex = false, structuredData = [] } = Astro.props;
-const siteUrl = 'https://coreflow.example';
+// Read from `site` in astro.config.mjs so the canonical URL, OG tags and the
+// generated sitemap can never disagree. Changing the domain is a one-line edit
+// there; the fallback only applies if `site` is unset.
+const siteUrl = Astro.site ?? new URL('https://coreflow.netlify.app');
 const canonicalUrl = new URL(Astro.url.pathname, siteUrl);
 const ogImage = new URL('/images/og-default.svg', siteUrl);
 
@@ -68,18 +71,15 @@ const allSchemas = [organizationSchema, ...structuredData];
     />
 
     <!--
-      Cloudflare Web Analytics — free, cookie-less, privacy-respecting.
-      REPLACE_WITH_REAL_TOKEN below with the real beacon token once the owner
-      creates a free Cloudflare account and registers this site at
-      https://www.cloudflare.com/web-analytics/ (no DNS/domain change
-      required — it's a JS beacon, works on any host). Until replaced, this
-      script loads but reports to no real dashboard.
+      Analytics is intentionally absent. A placeholder beacon token loads the
+      script, reports to no dashboard and throws a CORS error in every
+      visitor's console — worse than no analytics at all.
+
+      To enable Cloudflare Web Analytics (free, cookie-less, no DNS change):
+      register the site at https://www.cloudflare.com/web-analytics/ and add
+      the beacon script here with the real token. Netlify Analytics is the
+      other option and needs no page change at all.
     -->
-    <script
-      defer
-      src="https://static.cloudflareinsights.com/beacon.min.js"
-      data-cf-beacon='{"token": "REPLACE_WITH_REAL_TOKEN"}'
-    ></script>
   </head>
   <body>
     <Header />
